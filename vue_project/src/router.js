@@ -3,9 +3,10 @@ import Router from 'vue-router'
 import Login from './components/app/login.vue'
 import Reg from './components/app/reg.vue'
 import info from './components/app/info.vue'
-import todolist from './components/todoList/todolist.vue'
-import dom from './components/dom/dom.vue'
-import emps from './components/emps/emps.vue'
+
+//添加门店
+import AddShopHouse from "./components/shopHouse/addShopHouse/addShopHouse.vue"
+
 
 Vue.use(Router)
 
@@ -32,20 +33,10 @@ export default new Router({
       component: info,
       children:[
         {
-          path: '/todolist',
-          name: 'todolist',
-          component: todolist
-        },
-        {
-          path: '/dom',
-          name: 'dom',
-          component: dom
-        },
-        {
-          path: '/emps',
-          name: 'emps',
-          component: emps
-        },
+          path: 'addShopHouse',
+          name: 'addShopHouse',
+          component: AddShopHouse
+        }
       ]
     }
   ]
