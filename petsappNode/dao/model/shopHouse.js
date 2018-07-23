@@ -1,8 +1,8 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-var MovieSchema = new Schema({
-    //名称
+var AddshopHouseSchema = new Schema({
+    //门店名称
     shopName: {
         type: String
     },
@@ -28,16 +28,16 @@ var MovieSchema = new Schema({
     },
     // 头图
     shopImg: {
-        type: String
+        type: Object
     },
     // 特色
     shopFeature: {
         type: String
     },
-    //头图
-    shopImg: {
-        type: String
-    },
+    //状态
+    type: {
+        type: Number
+    }
 });
 
-mongoose.model("movies", MovieSchema, "movies");
+mongoose.model("shopHouse", AddshopHouseSchema, "shopHouse");

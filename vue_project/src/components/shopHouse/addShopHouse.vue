@@ -38,18 +38,18 @@
             </td>
         </tr>
         <tr>
-            <td><span>*</span>上传图片：</td>
+            <td>
+                <span>*</span>门店图片：</td>
             <td>
                 <el-upload
                     class="upload-demo"
-                    action=""
+                    action="/files/upload"
                     :on-remove="handleRemove"
                     list-type="picture"
-                    :auto-upload="false"
-                    :on-change="handleChange"
+                    :auto-upload="true"
+                    :on-success="handleSuccess"
                     >
                     <el-button size="small" type="primary">点击上传</el-button>
-                    <small slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</small>
                 </el-upload>
             </td>
         </tr>
@@ -61,6 +61,10 @@
 </template>
 
 <script>
+import { createNamespacedHelpers } from "vuex";
+
+const { mapState, mapMutations } = createNamespacedHelpers("shopHouse");
+
 export default {
   data() {
     return {
@@ -69,19 +73,36 @@ export default {
       shopAdd: "",
       shopCorporate: "",
       shopTel: "",
-      shopFeature: ""
-      
+      shopFeature: "",
+      shopImg: []
     };
   },
   methods: {
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
+    handleRemove(file) {
+      for (let i = 0; i < this.shopImg.length; i++) {
+        if (this.shopImg[i] === file.response) {
+          this.shopImg.splice(i, 1);
+          return;
+        }
+      }
     },
-    handleChange(file, fileList) {
-      console.log(file, fileList);
+    handleSuccess(response) {
+      this.shopImg.push(response);
     },
-    addBtn(){
-        console.log(this)
+    addBtn() {
+        this.$store.dispatch("shopHouse/addShopHouse", {
+          success: this.$router,
+          info: {
+            shopName: this.shopName,
+            shopLicenceNum: this.shopLicenceNum,
+            shopAdd: this.shopAdd,
+            shopCorporate: this.shopCorporate,
+            shopTel: this.shopTel,
+            shopFeature: this.shopFeature,
+            shopImg: this.shopImg,
+            type: 0
+          }
+        });
     }
   }
 };

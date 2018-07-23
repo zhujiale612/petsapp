@@ -25,7 +25,6 @@ export default {
         login(){
             this.$router.push(`/login/${this.$refs.username.value}`)
             // console.log(this.$refs)
-      
         }
     }
 } 

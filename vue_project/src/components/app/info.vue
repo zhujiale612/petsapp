@@ -10,7 +10,7 @@
           <el-submenu index="2">
             <span slot="title">门店管理</span>
             <el-menu-item index="/info/addShopHouse">添加门店</el-menu-item>
-            <el-menu-item index="/info">选项1</el-menu-item>
+            <el-menu-item index="/info/getShophouse">未使用门店</el-menu-item>
             <el-menu-item index="/info">选项1</el-menu-item>
           </el-submenu>
           <!-- <el-menu-item index="/info">商品管理</el-menu-item>
