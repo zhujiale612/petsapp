@@ -37,7 +37,8 @@ var AddshopHouseSchema = new Schema({
     //状态
     type: {
         type: Number
-    }
+    },
+    
 });
 
 mongoose.model("shopHouse", AddshopHouseSchema, "shopHouse");

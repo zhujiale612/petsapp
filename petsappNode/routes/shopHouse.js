@@ -2,7 +2,7 @@
 var express = require('express');
 var router = express.Router();
 
-let { addShopHouse, getHouseByPage, del, alterHouse } = require("../service/shopHouseService")
+let { addShopHouse, getHouseByPage, del, alterHouse, refuse } = require("../service/shopHouseService")
 
 
 
@@ -25,6 +25,12 @@ router.post('/del', async function (req, res, next) {
 router.post('/alterHouse', async function (req, res, next) {
     // console.log(req.body)
     res.send(await alterHouse(req.body))
+});
+
+//拒绝
+router.post('/refuse', async function (req, res, next) {
+    // console.log(req.body)
+    res.send(await refuse(req.body))
 });
 
 

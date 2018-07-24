@@ -41,3 +41,7 @@ module.exports.del = async (id) => {
 module.exports.alterHouse = async ({ info, id }) => {
     return await mongoose.model('shopHouse').update({ _id: id }, info)
 }
+//拒绝
+module.exports.refuse = async ({ info, id }) => {
+    return await mongoose.model('shopHouse').update({ _id: id }, info)
+}

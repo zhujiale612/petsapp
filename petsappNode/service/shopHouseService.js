@@ -1,5 +1,5 @@
 
-let { addShopHouse, getHouseByPage, del, alterHouse } = require("../dao/shopHouseDao.js");
+let { addShopHouse, getHouseByPage, del, alterHouse, refuse } = require("../dao/shopHouseDao.js");
 
 
 module.exports.getHouseByPage = async (nowPage, eachPage, type) => {
@@ -20,6 +20,15 @@ module.exports.del = async (id) => {
     let data = await del(id);
     if (data._id) {
         return await getHouseByPage(id.nowPage, id.eachPage, id.type);
+    }
+}
+
+//拒绝
+module.exports.refuse = async (info) => {
+    let data = await refuse(info);
+    console.log(data)
+    if (data.ok) {
+        return await getHouseByPage(info.nowPage, info.eachPage, info.type);
     }
 }
 

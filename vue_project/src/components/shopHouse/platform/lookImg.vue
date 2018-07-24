@@ -1,11 +1,10 @@
 <template>
     <el-card class="box-card">
         <div slot="header" class="clearfix">
-            <span>门店名称：{{imgName}}</span>
-            <el-button @click="backBtn" style="float: right; padding: 3px 0" type="text">返回</el-button>
+            <span>门店名称：<span style="color:red">{{imgName}}</span></span>
         </div>
         <div style="width:200px;border:1px solid pink;font-size:0px;border-radius:10px;padding:5px" v-for="(item,index) in imgArr" :key="item" class="text item">
-          <div style="float:left;margin:0 50px 0 10px"><span style="font-size:50px">{{index}}</span></div>
+          <div style="float:left;margin:0 50px 0 10px"><span style="font-size:50px;color:yellow">{{index}}</span></div>
           <img :src='item' style="width:100px" />
         </div>
     </el-card>
@@ -35,11 +34,6 @@ export default {
       imgName: ""
     };
   },
-  methods: {
-    backBtn() {
-      this.$router.push(`/info/getShophouse`);
-    }
-  }
 };
 </script>
 

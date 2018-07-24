@@ -1,6 +1,7 @@
 <template>
     <div>
         <el-table
+            border
             :data="rows"
             style="width: 100%;text-align:center">
             <el-table-column
@@ -44,16 +45,10 @@
                 label="操作">
                 <template slot-scope="scope">
                     <el-button
-                        @click.native.prevent="deleteRow(scope.row._id)"
+                        @click.native.prevent="apply(scope.row._id)"
                         type="text"
                         size="small">
-                        移除
-                    </el-button>
-                    <el-button
-                        @click.native.prevent="alterRow(scope.row._id)"
-                        type="text"
-                        size="small">
-                        修改
+                        申请
                     </el-button>
                 </template>
             </el-table-column>
@@ -92,13 +87,12 @@ export default {
     handleCurrentChange(val) {
       this.setSelect(val);
     },
-    deleteRow(id) {
-      //   rows.splice(index, 1);
-      this.$store.dispatch("shopHouse/del", { id, type: 0 });
+    apply(id) {
+      this.$router.push(`/info/applyHouse/${id}`);
     },
-    alterRow(id) {
-      this.$router.push(`/info/alterHouse/${id}`);
-    },
+    // alterRow(id) {
+    // //   this.$router.push(`/info/alterHouse/${id}`);
+    // },
     lookImg(img) {
       this.$router.push(`/info/lookImg/${img._id}`);
     }

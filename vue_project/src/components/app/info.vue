@@ -7,11 +7,19 @@
         <el-menu-item-group>
           <!-- <el-menu-item index="/info/a">用户管理</el-menu-item>
           <el-menu-item index="/info">宠主管理</el-menu-item> -->
-          <el-submenu index="2">
+          <el-submenu v-if="type===0" index="2">
             <span slot="title">门店管理</span>
             <el-menu-item index="/info/addShopHouse">添加门店</el-menu-item>
             <el-menu-item index="/info/getShophouse">未使用门店</el-menu-item>
-            <el-menu-item index="/info">选项1</el-menu-item>
+            <el-menu-item index="/info/auditing">审核门店</el-menu-item>
+            <el-menu-item index="/info/successApply">已审核门店</el-menu-item>
+          </el-submenu>
+          <el-submenu v-else index="2">
+            <span slot="title">门店管理</span>
+            <!-- <el-menu-item index="/info/addShopHouse">添加门店</el-menu-item> -->
+            <el-menu-item index="/info/existHouse">申请门店</el-menu-item>
+            <el-menu-item index="/info/applying">审核中</el-menu-item>
+            <!-- <el-menu-item index="/info">选项1</el-menu-item> -->
           </el-submenu>
           <!-- <el-menu-item index="/info">商品管理</el-menu-item>
           <el-menu-item index="/info">服务管理</el-menu-item>
@@ -43,7 +51,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  data() {
+    return {
+      type: 0
+    };
+  }
+};
 </script>
 
 <style>

@@ -4,37 +4,13 @@
         <tr>
             <td><span>*</span>商店名称：</td>
             <td>
-                <el-input v-model="shopName" placeholder="请输入内容"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>营业执照号码：</td>
-            <td>
-                <el-input v-model="shopLicenceNum" placeholder="请输入内容"></el-input>
+                <el-input v-model="shopName" placeholder="请输入内容" ></el-input>
             </td>
         </tr>
         <tr>
             <td><span>*</span>营业地址：</td>
             <td>
                 <el-input v-model="shopAdd" placeholder="请输入内容"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>法人：</td>
-            <td>
-                <el-input v-model="shopCorporate" placeholder="请输入内容"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>特色：</td>
-            <td>
-                <textarea class="textarea" v-model="shopFeature"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>联系电话：</td>
-            <td>
-                <el-input v-model="shopTel" placeholder="请输入内容"></el-input>
             </td>
         </tr>
         <tr>
@@ -69,11 +45,11 @@ export default {
   data() {
     return {
       shopName: "",
-      shopLicenceNum: "",
+      shopLicenceNum: "亲~等你来哟",
       shopAdd: "",
-      shopCorporate: "",
-      shopTel: "",
-      shopFeature: "",
+      shopCorporate: "亲~等你来哟",
+      shopTel: "亲~等你来哟",
+      shopFeature: "亲~等你来哟",
       shopImg: []
     };
   },

@@ -63,6 +63,20 @@ export default {
             }).then(res => res.json());
             success.push(`/info/getShophouse`)
         },
+        //确定申请
+        async isApply(context, { info, success, id }) {
+            let data = await fetch(`/shopHouse/alterHouse`, {
+                method: "post",
+                body: JSON.stringify({
+                    info,
+                    id
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then(res => res.json());
+            success.push(`/info/existHouse`)
+        },
         //删除
         async del(context, { id, type }) {
             let data = await fetch(`/shopHouse/del`, {
@@ -77,7 +91,25 @@ export default {
                     "Content-type": "application/json"
                 }
             }).then(res => res.json());
-            console.log(data)
+            // console.log(data)
+            context.commit("houseInfo", data)
+        },
+        //拒绝或同意或关闭
+        async refuse(context, { id, info, type }) {
+            let data = await fetch(`/shopHouse/refuse`, {
+                method: "post",
+                body: JSON.stringify({
+                    id,
+                    info,
+                    type,
+                    nowPage: this.state.shopHouse.nowPage,
+                    eachPage: this.state.shopHouse.eachPage
+                }),
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }).then(res => res.json());
+            // console.log(data)
             context.commit("houseInfo", data)
         },
     }

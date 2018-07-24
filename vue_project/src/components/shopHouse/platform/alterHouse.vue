@@ -4,37 +4,13 @@
         <tr>
             <td><span>*</span>商店名称：</td>
             <td>
-                <el-input v-model="shopName"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>营业执照号码：</td>
-            <td>
-                <el-input v-model="shopLicenceNum"></el-input>
+                <el-input v-model="shopName" ></el-input>
             </td>
         </tr>
         <tr>
             <td><span>*</span>营业地址：</td>
             <td>
-                <el-input v-model="shopAdd"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>法人：</td>
-            <td>
-                <el-input v-model="shopCorporate"></el-input>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>特色：</td>
-            <td>
-                <textarea class="textarea" v-model="shopFeature"></textarea>
-            </td>
-        </tr>
-        <tr>
-            <td><span>*</span>联系电话：</td>
-            <td>
-                <el-input v-model="shopTel" placeholder="请输入内容"></el-input>
+                <el-input v-model="shopAdd" ></el-input>
             </td>
         </tr>
         <tr>
@@ -51,7 +27,6 @@
                     :file-list="fileList2"
                     >
                     <el-button size="small" type="primary">点击上传</el-button>
-                    <small slot="tip" class="el-upload__tip">（只能上传一张门店图）</small>
                 </el-upload>
             </td>
         </tr>
