@@ -1,6 +1,6 @@
 <template>
-<el-container class="container telogs">
-    <el-card class="box-card users" shadow="hover">
+<el-container class="container">
+    <el-card class="box-card" shadow="hover">
         <h2>门店管理员注册</h2>
         <el-form ref="form" label-width="80px">
             <el-form-item label="管理员名">
@@ -11,9 +11,6 @@
             </el-form-item>
             <el-form-item label="确认密码">
                 <el-input type="password" placeholder="请再次输入密码" v-model="userPwdAgin" clearable></el-input>
-            </el-form-item>
-            <el-form-item label="手机号码">
-                <el-input type="text" placeholder="请输入11位手机号" v-model="userPhone" clearable></el-input>
             </el-form-item>
 
             <el-form-item label="注册权限">
@@ -39,7 +36,6 @@ export default {
             userName: "",
             userPwd: "",
             userPwdAgin: "",
-            userPhone:"",
             type: ""
         };
     },
@@ -51,12 +47,11 @@ export default {
         async register() {
             if (this.userName != "" && this.userPwd != "" && this.userPwdAgin != "" && this.type != "") {
                 if (this.userPwd == this.userPwdAgin) {
-                    const data = await fetch("/user/register", {
+                    const data = await fetch("/users/register", {
                         method: "post",
                         body: JSON.stringify({
                             userAcount: this.userName, //账号
                             userPwd: this.userPwd, //密码
-                            userPhone:this.userPhone,
                             userType:this.type,
                         }),
                         headers: {
@@ -69,7 +64,7 @@ export default {
                             confirmButtonText: "确定",
                             callback: action => {
                                 this.$router.push(
-                                    `info/${this.type}`
+                                    `/${this.userName}/${this.userPwd}`
                                 );
                             }
                         });
@@ -86,19 +81,5 @@ export default {
 </script>
 
 <style>
-.users {
-  width: 500px;
-  height: 500px;
-  box-shadow: 20 0 0 15 red;
-  margin: 100px auto;
-}
-.telogs {
-  height:700px;
-  background-image: url("../../../imgs/dc72c3c04ef01fdf-22176402958c6b80-19b50da29ec06c0e9e854ba3d2860da3.jpg");
-  background-repeat: no-repeat;
-  background-size: 100%;
-}
-h2{
-    text-align: center
-}
+
 </style>

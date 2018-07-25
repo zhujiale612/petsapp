@@ -5,18 +5,19 @@ import router from "./router.js"
 
 
 import store from './store.js'
+import storeUsers from './components/usersManage/storeUsers.vue'
 
 
 import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
+
+
 Vue.use(ElementUI);
-
-
 Vue.config.productionTip = false
 
-
+Vue.component("storeUsers",storeUsers)
 new Vue({
-
+ 
   render: h =>
-    h(App), router, store,
+   h(App),router, store,
 }).$mount('#app')

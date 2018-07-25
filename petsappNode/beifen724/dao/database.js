@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-require("./model/user.js")
+require("./model/users.js")
 var dbURI = 'mongodb://localhost/last';
 
 mongoose.connect(dbURI);
