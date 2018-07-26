@@ -9,9 +9,9 @@
                     <el-menu-item index="">门店管理</el-menu-item>
                     <el-menu-item index="">供应商管理</el-menu-item>
                     <el-submenu index="">
-                    <template slot="title">宠主管理</template>
-                    <el-menu-item index="/addmember">欢迎新主人</el-menu-item>
-                    <el-menu-item index="/getmember">铲屎君列表</el-menu-item>
+                        <template slot="title">宠主管理</template>
+                        <el-menu-item index="/addmember">欢迎新主人</el-menu-item>
+                        <el-menu-item index="/getmember">铲屎君列表</el-menu-item>
                     </el-submenu>
                 </el-menu-item-group>
             </el-submenu>
@@ -19,11 +19,11 @@
                 <template slot="title"><i class="el-icon-message"></i>门店管理员权限</template>
                 <el-menu-item-group>
                     <el-menu-item index="">商品管理</el-menu-item>
-                   <el-submenu index="">
-                    <template slot="title">服务管理</template>
-                    <el-menu-item index="/门店管理员/addservice">添加服务</el-menu-item>
-                    <el-menu-item index="/门店管理员/getservice">服务列表</el-menu-item>
-                  </el-submenu>
+                    <el-submenu index="">
+                        <template slot="title">服务管理</template>
+                        <el-menu-item index="/addservice">添加服务</el-menu-item>
+                        <el-menu-item index="/getservice">服务列表</el-menu-item>
+                    </el-submenu>
                     <el-menu-item index="/order">订单管理</el-menu-item>
                     <el-menu-item index="/pet">宠物管理</el-menu-item>
                 </el-menu-item-group>
@@ -54,23 +54,29 @@ export default {
     data() {
         return {
             display1: "block",
-            display:"block"
+            display: "block"
         }
 
     },
     created() {
         // console.log(this.$router.currentRoute.params.userType)
-        // console.log(this.$router.currentRoute)
+        console.log(this.$router.currentRoute)
         if (this.$router.currentRoute.params.userType === "门店管理员") {
             this.display = "none"
-        } else if(this.$router.currentRoute.name === "order"){
-             this.display = "none"
-        }
-        else if(this.$router.currentRoute.name === "pet"){
-             this.display = "none"
-        }
-        else{
-             this.display1= "none"
+        } else if (this.$router.currentRoute.name === "order") {
+            this.display = "none"
+        } else if (this.$router.currentRoute.name === "pet") {
+            this.display = "none"
+        } else if (this.$router.currentRoute.name === "addservice") {
+            this.display = "none"
+        } else if (this.$router.currentRoute.name === "getservice") {
+            this.display = "none"
+        } else if (this.$router.currentRoute.name === "addmember") {
+            this.display1 = "none"
+        } else if (this.$router.currentRoute.name === "getmember") {
+            this.display1 = "none"
+        } else {
+            this.display1 = "none"
         }
     },
     methods: {

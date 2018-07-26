@@ -63,12 +63,12 @@ export default new Router({
           component: Getmember
         },
         {
-          path: '/门店管理员/addservice',
+          path: '/addservice',
           name: 'addservice',
           component: Addservice
         },
         {
-          path: '/门店管理员/getservice',
+          path: '/getservice',
           name: 'getservice',
           component: Getservice
         },
