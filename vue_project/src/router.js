@@ -4,9 +4,8 @@ import Login from './components/app/login.vue'
 import Reg from './components/app/reg.vue'
 import info from './components/app/info.vue'
 import storeUsers from "./components/usersManage/storeUsers.vue"
-// import todolist from './components/todoList/todolist.vue'
-// import dom from './components/dom/dom.vue'
-// import emps from './components/emps/emps.vue'
+import order from './components/order/order.vue'
+import pet from './components/pet/pet.vue'
 
 Vue.use(Router)
 
@@ -37,16 +36,16 @@ export default new Router({
           name: 'storeUsers',
           component: storeUsers
         },
-      //   {
-      //     path: '/dom',
-      //     name: 'dom',
-      //     component: dom
-      //   },
-      //   {
-      //     path: '/emps',
-      //     name: 'emps',
-      //     component: emps
-      //   },
+        {
+          path: '/order',
+          name: 'order',
+          component: order
+        },
+        {
+          path: '/pet',
+          name: 'pet',
+          component: pet
+        },
       ]
     }
   ]

@@ -19,7 +19,7 @@
             <el-form-item label="注册权限">
                 <el-radio-group v-model="type">
                     <el-radio label="门店管理员"></el-radio>
-                    <el-radio label="平台管理员" disabled></el-radio>
+                    <el-radio label="平台管理员" ></el-radio>
                 </el-radio-group>
             </el-form-item>
 

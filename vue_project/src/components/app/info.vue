@@ -16,8 +16,8 @@
                 <el-menu-item-group>
                     <el-menu-item index="">商品管理</el-menu-item>
                     <el-menu-item index="">服务管理</el-menu-item>
-                    <el-menu-item index="">订单管理</el-menu-item>
-                    <el-menu-item index="">宠物管理</el-menu-item>
+                    <el-menu-item index="/order">订单管理</el-menu-item>
+                    <el-menu-item index="/pet">宠物管理</el-menu-item>
                 </el-menu-item-group>
             </el-submenu>
 
@@ -52,11 +52,17 @@ export default {
     },
     created() {
         // console.log(this.$router.currentRoute.params.userType)
-        // console.log(this)
+        // console.log(this.$router.currentRoute)
         if (this.$router.currentRoute.params.userType === "门店管理员") {
             this.display = "none"
-        } else {
-            this.display1 = "none"
+        } else if(this.$router.currentRoute.name === "order"){
+             this.display = "none"
+        }
+        else if(this.$router.currentRoute.name === "pet"){
+             this.display = "none"
+        }
+        else{
+             this.display1= "none"
         }
     },
     methods: {
