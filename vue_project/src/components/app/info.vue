@@ -18,7 +18,11 @@
             <el-submenu index="1" :style="{display:display1}">
                 <template slot="title"><i class="el-icon-message"></i>门店管理员权限</template>
                 <el-menu-item-group>
-                    <el-menu-item index="">商品管理</el-menu-item>
+                    <el-submenu index="">
+                        <template slot="title">商品管理</template>
+                            <el-menu-item index="/addgoods">新增商品</el-menu-item>
+                            <el-menu-item index="/goodslist">商品列表</el-menu-item>
+                    </el-submenu>
                     <el-submenu index="">
                         <template slot="title">服务管理</template>
                         <el-menu-item index="/addservice">添加服务</el-menu-item>
@@ -51,40 +55,45 @@
 
 <script>
 export default {
-    data() {
-        return {
-            display1: "block",
-            display: "block"
-        }
-
-    },
-    created() {
-        // console.log(this.$router.currentRoute.params.userType)
-        console.log(this.$router.currentRoute)
-        if (this.$router.currentRoute.params.userType === "门店管理员") {
-            this.display = "none"
-        } else if (this.$router.currentRoute.name === "order") {
-            this.display = "none"
-        } else if (this.$router.currentRoute.name === "pet") {
-            this.display = "none"
-        } else if (this.$router.currentRoute.name === "addservice") {
-            this.display = "none"
-        } else if (this.$router.currentRoute.name === "getservice") {
-            this.display = "none"
-        } else if (this.$router.currentRoute.name === "addmember") {
-            this.display1 = "none"
-        } else if (this.$router.currentRoute.name === "getmember") {
-            this.display1 = "none"
-        } else {
-            this.display1 = "none"
-        }
-    },
-    methods: {
-        esc() {
-            this.$router.push("/");
-        }
-
+  data() {
+    return {
+      display1: "block",
+      display: "block"
+    };
+  },
+  created() {
+    // console.log(this.$router.currentRoute.params.userType)
+    console.log(this.$router.currentRoute);
+    if (this.$router.currentRoute.params.userType === "门店管理员") {
+      this.display = "none";
+    } else if (this.$router.currentRoute.name === "order") {
+      this.display = "none";
+    } else if (this.$router.currentRoute.name === "pet") {
+      this.display = "none";
+    } else if (this.$router.currentRoute.name === "addservice") {
+      this.display = "none";
+    } else if (this.$router.currentRoute.name === "getservice") {
+      this.display = "none";
+    } 
+    else if(this.$router.currentRoute.name === "addgoods"){
+            this.display = "none";
     }
+    else if(this.$router.currentRoute.name === "goodslist"){
+            this.display = "none";
+    }
+    else if (this.$router.currentRoute.name === "addmember") {
+      this.display1 = "none";
+    } else if (this.$router.currentRoute.name === "getmember") {
+      this.display1 = "none";
+    } else {
+      this.display1 = "none";
+    }
+  },
+  methods: {
+    esc() {
+      this.$router.push("/");
+    }
+  }
 };
 </script>
 

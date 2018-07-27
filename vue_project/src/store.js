@@ -8,6 +8,9 @@ import pet from "./components/pet/store.js"
 import Member from "./components/member/store.js"
 //服务
 import Service from "./components/service/store.js"
+//商品
+import Goodstore from "./components/goods/store.js"
+
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -16,6 +19,7 @@ export default new Vuex.Store({
         pet,
         usersManage,
         Member,
-        Service
+        Service,
+        Goodstore
     }
 })

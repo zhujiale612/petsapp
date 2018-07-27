@@ -12,6 +12,9 @@ var membersRouter = require('./routes/members');
 var memberurlRouter = require('./routes/memberurl');
 //服务
 var serviceRouter = require('./routes/serviceList');
+//商品
+var goodsRouter = require('./routes/goodsRouter');
+var filesRouter = require('./routes/files');
 
 var app = express();
 
@@ -33,7 +36,9 @@ app.use('/membersRouter', membersRouter);
 app.use('/memberurl', memberurlRouter);
 //服务
 app.use('/serviceList', serviceRouter);
-
+//商品
+app.use('/goodsRouter', goodsRouter);
+app.use('/files', filesRouter);
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

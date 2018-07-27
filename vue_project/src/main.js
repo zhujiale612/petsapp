@@ -14,7 +14,10 @@ import ElementUI from 'element-ui';
 //服务
 import addservice from "./components/service/addservice"
 import getservice from "./components/service/getservice"
-
+//商品
+import Addgoods from "./components/goods/addgoods.vue"
+import Goodslist from "./components/goods/goodslist.vue"
+import Goodsgrid from "./components/goods/goodsgrid.vue"
 
 import 'element-ui/lib/theme-chalk/index.css';
 
@@ -25,9 +28,14 @@ Vue.config.productionTip = false
 Vue.component("storeUsers",storeUsers)
 Vue.component("order", order)
 Vue.component("pet", pet)
+
 Vue.component("addmember", addmember)
 Vue.component("addservice", addservice)
 Vue.component("getservice", getservice)
+
+Vue.component("Addgoods", Addgoods)
+Vue.component("Goodslist", Goodslist)
+Vue.component("Goodsgrid", Goodsgrid)
 new Vue({
  
   render: h =>

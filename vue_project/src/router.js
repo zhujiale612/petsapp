@@ -12,6 +12,10 @@ import Getmember from './components/member/getmember.vue'
 //服务
 import Addservice from "./components/service/addservice"
 import Getservice from "./components/service/getservice"
+//商品
+import Addgoods from "./components/goods/addgoods.vue"
+import Goodslist from './components/goods/goodslist.vue'
+import Goodsgrid from './components/goods/goodsgrid.vue'
 
 Vue.use(Router)
 
@@ -71,6 +75,21 @@ export default new Router({
           path: '/getservice',
           name: 'getservice',
           component: Getservice
+        },
+        {
+          path: '/addgoods',
+          name: 'addgoods',
+          component: Addgoods
+        },
+        {
+          path: '/goodslist',
+          name: 'goodslist',
+          component: Goodslist
+        },
+        {
+          path: '/goodsgrid/:goodsId',
+          name: 'goodsgrid',
+          component: Goodsgrid
         },
       ]
     }
