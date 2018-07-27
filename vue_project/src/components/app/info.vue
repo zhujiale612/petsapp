@@ -2,11 +2,17 @@
 <el-container style="height: 800px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
         <el-menu :default-openeds="['1', '3']" router>
-            <el-submenu index="0" :style="{display:display}">
+            <el-submenu index="0" v-if="userType===0" >
                 <template slot="title"><i class="el-icon-menu"></i>平台管理员权限</template>
                 <el-menu-item-group>
                     <el-menu-item index="/storeUsers">用户管理</el-menu-item>
-                    <el-menu-item index="">门店管理</el-menu-item>
+                     <el-submenu index="">
+                        <template slot="title">门店管理</template>
+                        <el-menu-item index="/info/addShopHouse">添加门店</el-menu-item>
+                        <el-menu-item index="/info/getShophouse">未使用门店</el-menu-item>
+                        <el-menu-item index="/info/auditing">审核门店</el-menu-item>
+                        <el-menu-item index="/info/successApply">已审核门店</el-menu-item>
+                    </el-submenu>
                     <el-menu-item index="">供应商管理</el-menu-item>
                     <el-submenu index="">
                         <template slot="title">宠主管理</template>
@@ -15,13 +21,13 @@
                     </el-submenu>
                 </el-menu-item-group>
             </el-submenu>
-            <el-submenu index="1" :style="{display:display1}">
+            <el-submenu index="1" v-else >
                 <template slot="title"><i class="el-icon-message"></i>门店管理员权限</template>
                 <el-menu-item-group>
                     <el-submenu index="">
                         <template slot="title">商品管理</template>
-                            <el-menu-item index="/addgoods">新增商品</el-menu-item>
-                            <el-menu-item index="/goodslist">商品列表</el-menu-item>
+                        <el-menu-item index="/addgoods">新增商品</el-menu-item>
+                        <el-menu-item index="/goodslist">商品列表</el-menu-item>
                     </el-submenu>
                     <el-submenu index="">
                         <template slot="title">服务管理</template>
@@ -30,6 +36,12 @@
                     </el-submenu>
                     <el-menu-item index="/order">订单管理</el-menu-item>
                     <el-menu-item index="/pet">宠物管理</el-menu-item>
+                    <el-submenu index="">
+                        <template slot="title">门店管理</template>
+                        <el-menu-item index="/info/existHouse">申请门店</el-menu-item>
+                        <el-menu-item index="/info/applying">审核中</el-menu-item>
+                        <el-menu-item index="/info/haveHouse">拥有的门店</el-menu-item>
+                    </el-submenu>
                 </el-menu-item-group>
             </el-submenu>
 
@@ -57,46 +69,50 @@
 export default {
   data() {
     return {
-      display1: "block",
-      display: "block"
+      userType: "",
+      content: []
     };
   },
-  created() {
-    // console.log(this.$router.currentRoute.params.userType)
-    console.log(this.$router.currentRoute);
-    if (this.$router.currentRoute.params.userType === "门店管理员") {
-      this.display = "none";
-    } else if (this.$router.currentRoute.name === "order") {
-      this.display = "none";
-    } else if (this.$router.currentRoute.name === "pet") {
-      this.display = "none";
-    } else if (this.$router.currentRoute.name === "addservice") {
-      this.display = "none";
-    } else if (this.$router.currentRoute.name === "getservice") {
-      this.display = "none";
-    } 
-    else if(this.$router.currentRoute.name === "addgoods"){
-            this.display = "none";
-    }
-    else if(this.$router.currentRoute.name === "goodslist"){
-            this.display = "none";
-    }
-    else if (this.$router.currentRoute.name === "addmember") {
-      this.display1 = "none";
-    } else if (this.$router.currentRoute.name === "getmember") {
-      this.display1 = "none";
-    } else {
-      this.display1 = "none";
+  async created() {
+    let localstroage = window.localStorage;
+    this.userType = localstroage.getItem("userType") * 1;
+    let userId = localstroage.getItem("userId");
+    await this.$store.dispatch("shopHouse/getSpeakByPage", { heId: userId });
+    if (JSON.parse(localstroage.getItem("count")) * 1) {
+      this.content = JSON.parse(localstroage.getItem("content"));
+      this.open();
     }
   },
   methods: {
     esc() {
       this.$router.push("/");
+    },
+    open() {
+      this.$alert(
+        `失败理由：${this.content
+          .map(item => {
+            return `<P><${item.shopName}>失败因为：${item.content}</p>`;
+          })
+          .join("")}`,
+        `${this.content.map(item => {
+          return `${item.shopName}申请失败`;
+        })}`,
+        {
+          dangerouslyUseHTMLString: true,
+          confirmButtonText: "确定",
+          callback: action => {
+            let heId = this.content[0].heId;
+            var localstroage = window.localStorage;
+            localstroage.removeItem("count");
+            localstroage.removeItem("content");
+            this.$store.dispatch("shopHouse/delSpeak", { heId });
+          }
+        }
+      );
     }
   }
 };
 </script>
 
 <style>
-
 </style>

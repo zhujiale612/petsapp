@@ -2,6 +2,12 @@
 <div>
     <table style="text-align:right;">
         <tr>
+            <td><span>*</span>申请人：</td>
+            <td>
+                <el-input :disabled="true" v-model="userName" ></el-input>
+            </td>
+        </tr>
+        <tr>
             <td><span>*</span>商店名称：</td>
             <td>
                 <el-input v-model="shopName" ></el-input>
@@ -51,6 +57,9 @@ const { mapState, mapMutations } = createNamespacedHelpers("shopHouse");
 
 export default {
   created() {
+    let localstroage = window.localStorage;
+    this.userName = localstroage.getItem("userAcount");
+    this.usersId = localstroage.getItem("userId");
     this.rows.some(item => {
       if (item._id === this.$route.params.houseId) {
         this.shopAdd = item.shopAdd;
@@ -63,13 +72,14 @@ export default {
   },
   data() {
     return {
+      userName: "",
       shopName: "",
       shopLicenceNum: "",
       shopAdd: "",
       shopCorporate: "",
       shopTel: "",
       shopFeature: "",
-      shopImg: []
+      usersId: ""
     };
   },
   methods: {
@@ -94,8 +104,9 @@ export default {
           shopCorporate: this.shopCorporate,
           shopTel: this.shopTel,
           shopFeature: this.shopFeature,
-          shopImg: this.shopImg,
-          type: 1
+          type: 1,
+          usersId: this.usersId,
+          userName: this.userName
         },
         id: this.$route.params.houseId
       });

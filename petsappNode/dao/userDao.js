@@ -18,7 +18,7 @@ module.exports.register = async (data) => {//注册包括判断是否已注册
         }
     }
     if (isdata == "false") {
-        await mongoose.model("users")
+        return await mongoose.model("users")
             .create({
                 userAcount: userAcount,//账号
                 userPwd: userPwd,//密码
@@ -27,9 +27,8 @@ module.exports.register = async (data) => {//注册包括判断是否已注册
                 userType: userType,//角色
                 userStatus: "不可用",//状态
             })
-        isdata = "true";
     } else {
-        isdata = "false";
+        isdata = false;
     }
     return isdata;
 }

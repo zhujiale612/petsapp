@@ -17,6 +17,32 @@ import Addgoods from "./components/goods/addgoods.vue"
 import Goodslist from './components/goods/goodslist.vue'
 import Goodsgrid from './components/goods/goodsgrid.vue'
 
+
+
+//>>>>>>>>>>>>>>>平台的<<<<<<<<<<<<<<<<
+//添加门店
+import AddShopHouse from "./components/shopHouse/platform/addShopHouse.vue"
+//已关门店
+import GetShophouse from "./components/shopHouse/platform/getShopHouse.vue"
+//查看图片
+import LookImg from "./components/shopHouse/platform/lookImg.vue"
+//修改
+// import AlterHouse from "./components/shopHouse/platform/alterHouse.vue"
+//审核
+import Auditing from "./components/shopHouse/platform/auditing.vue"
+//已审核
+import SuccessApply from "./components/shopHouse/platform/successApply.vue"
+
+//>>>>>>>>>>>>>>>>>>>门店的<<<<<<<<<<<<<<<<<
+//可以申请的门店
+import ExistHouse from "./components/shopHouse/store/existHouse.vue"
+//申请
+import ApplyHouse from "./components/shopHouse/store/applyHouse.vue"
+//审核中
+import Applying from "./components/shopHouse/store/applying.vue"
+//拥有的门店
+import HaveHouse from "./components/shopHouse/store/haveHouse.vue"
+
 Vue.use(Router)
 
 export default new Router({
@@ -37,10 +63,10 @@ export default new Router({
       component: Reg
     },
     {
-      path: '/info/:userType',
+      path: '/info',
       name: 'info',
       component: info,
-      children:[
+      children: [
         {
           path: '/storeUsers',
           name: 'storeUsers',
@@ -55,7 +81,7 @@ export default new Router({
           path: '/pet',
           name: 'pet',
           component: pet
-        }, 
+        },
         {
           path: '/addmember',
           name: 'addmember',
@@ -90,6 +116,57 @@ export default new Router({
           path: '/goodsgrid/:goodsId',
           name: 'goodsgrid',
           component: Goodsgrid
+        },
+        //门店
+        {
+          path: 'addShopHouse',
+          name: 'addShopHouse',
+          component: AddShopHouse
+        },
+        {
+          path: 'getShophouse',
+          name: 'getShophouse',
+          component: GetShophouse
+        },
+        {
+          path: 'lookImg/:imgId',
+          name: 'lookImg',
+          component: LookImg
+        },
+        // {
+        //   path: 'alterHouse/:houseId',
+        //   name: 'alterHouse',
+        //   component: AlterHouse
+        // },
+        {
+          path: 'existHouse',
+          name: 'existHouse',
+          component: ExistHouse
+        },
+        {
+          path: 'applyHouse/:houseId',
+          name: 'applyHouse',
+          component: ApplyHouse
+        },
+        {
+          path: 'applying',
+          name: 'applying',
+          component: Applying
+        },
+        {
+          path: 'auditing',
+          name: 'auditing',
+          component: Auditing
+        },
+        {
+          path: 'successApply',
+          name: 'successApply',
+          component: SuccessApply
+        },
+        {
+          path: 'haveHouse',
+          name: 'haveHouse',
+          component: HaveHouse
         },
       ]
     }

@@ -15,6 +15,9 @@ var serviceRouter = require('./routes/serviceList');
 //商品
 var goodsRouter = require('./routes/goodsRouter');
 var filesRouter = require('./routes/files');
+//门店
+var shopHouseRouter = require('./routes/shopHouse');
+
 
 var app = express();
 
@@ -39,6 +42,10 @@ app.use('/serviceList', serviceRouter);
 //商品
 app.use('/goodsRouter', goodsRouter);
 app.use('/files', filesRouter);
+//门店
+app.use('/shopHouse', shopHouseRouter);
+
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
   next(createError(404));

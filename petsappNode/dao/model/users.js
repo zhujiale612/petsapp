@@ -31,9 +31,9 @@ var UserSchema = new Schema({
 		type: String
 	},
 	//对的的门店
-	shops: [{
+	shopHouse: [{
 		type: Schema.Types.ObjectId,
-		ref: 'shops'
+		ref: 'shopHouse'
 	}],
 	//对应的服务
 	services: [{

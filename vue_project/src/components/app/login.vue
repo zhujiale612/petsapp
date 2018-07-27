@@ -39,7 +39,16 @@ export default {
   },
   methods: {
     async btn() {
-      if (this.user != undefined && this.pass != undefined && this.type != undefined) {
+      if (this.type == "平台管理员") {
+        this.type = "0";
+      } else if (this.type == "门店管理员") {
+        this.type = "1";
+      }
+      if (
+        this.user != undefined &&
+        this.pass != undefined &&
+        this.type != undefined
+      ) {
         const data = await fetch("/user/Land", {
           method: "post",
           body: JSON.stringify({
@@ -51,15 +60,15 @@ export default {
             "Content-Type": "application/json"
           }
         }).then(res => res.json());
-        if (data != false ){
+        if (data != false) {
           this.$alert("登陆成功！", "提示", {
             confirmButtonText: "确定",
-            callback: action => {
-              localStorage.userName = data.userName;//姓名
-              localStorage.userStatus = data.userStatus//状态
-              localStorage.userType = data.userType//用户类型
-              localStorage.userAcount = data.userAcount//用户账号
-              this.$router.push(`/info/${data.userType}`);
+            callback: () => {
+              localStorage.userId = data._id; //姓名
+              localStorage.userStatus = data.userStatus; //状态
+              localStorage.userType = data.userType; //用户类型
+              localStorage.userAcount = data.userAcount; //用户账号
+              this.$router.push(`/info`);
             }
           });
         } else {
@@ -88,7 +97,7 @@ export default {
 }
 
 .telogs {
-  height:700px;
+  height: 700px;
   background-image: url("../../../imgs/dc72c3c04ef01fdf-22176402958c6b80-19b50da29ec06c0e9e854ba3d2860da3.jpg");
   background-repeat: no-repeat;
   background-size: 100%;

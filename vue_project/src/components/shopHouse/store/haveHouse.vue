@@ -5,10 +5,6 @@
             :data="rows"
             style="width: 100%;text-align:center">
             <el-table-column
-                prop="userName"
-                label="申请人">
-            </el-table-column>
-            <el-table-column
                 prop="shopName"
                 label="门店名称">
             </el-table-column>
@@ -48,7 +44,7 @@
                 prop="_id"
                 label="状态">
                 <template slot-scope="scope">
-                    <el-button type="primary" :loading="true">审核中</el-button>
+                    
                 </template>
             </el-table-column>
         </el-table>
@@ -75,7 +71,7 @@ export default {
   created() {
     let localstroage = window.localStorage;
     let usersId = localstroage.getItem("userId");
-    this.$store.dispatch("shopHouse/getStoreByPage", { usersId, type: 1 });
+    this.$store.dispatch("shopHouse/getStoreByPage", { usersId, type: 2 });
   },
   computed: {
     ...mapState(["count", "eachPage", "maxPage", "nowPage", "rows"])

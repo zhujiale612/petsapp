@@ -10,7 +10,8 @@ import Member from "./components/member/store.js"
 import Service from "./components/service/store.js"
 //商品
 import Goodstore from "./components/goods/store.js"
-
+//门店
+import shopHouse from "./components/shopHouse/store.js"
 Vue.use(Vuex)
 
 export default new Vuex.Store({
@@ -20,6 +21,7 @@ export default new Vuex.Store({
         usersManage,
         Member,
         Service,
-        Goodstore
+        Goodstore,
+        shopHouse
     }
 })

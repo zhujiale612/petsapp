@@ -38,7 +38,13 @@ var AddshopHouseSchema = new Schema({
     type: {
         type: Number
     },
-    
+    usersId: {
+        type: Schema.Types.ObjectId,
+        ref: 'users'
+    },
+    userName: {
+        type: String
+    }
 });
 
 mongoose.model("shopHouse", AddshopHouseSchema, "shopHouse");

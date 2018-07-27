@@ -5,6 +5,10 @@
             :data="rows"
             style="width: 100%;text-align:center">
             <el-table-column
+                prop="userName"
+                label="申请人">
+            </el-table-column>
+            <el-table-column
                 prop="shopName"
                 label="门店名称">
             </el-table-column>
@@ -44,13 +48,20 @@
                 prop="_id"
                 label="操作">
                 <template slot-scope="scope">
+                    <el-button size="small" type="text" @click="rejectBtn(scope.row._id)">拒绝</el-button>
+                    <el-dialog title="拒绝理由" :visible.sync="dialogFormVisible">
+                        <el-form :model="form">
+                            <el-form-item label="QAQ" :label-width="formLabelWidth">
+                                <el-input v-model="form.name" auto-complete="off"></el-input>
+                            </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">取 消</el-button>
+                            <el-button type="primary" @click="refuseBtn(scope.row)">确 定</el-button>
+                        </div>
+                    </el-dialog>
                     <el-button
-                        @click.native.prevent="refuseBtn(scope.row)"
-                        type="text"
-                        size="small">
-                        拒绝
-                    </el-button>
-                    <el-button
+                        style="margin-left:10px"
                         @click.native.prevent="agreeBtn(scope.row)"
                         type="text"
                         size="small">
@@ -85,6 +96,16 @@ export default {
   computed: {
     ...mapState(["count", "eachPage", "maxPage", "nowPage", "rows"])
   },
+  data() {
+    return {
+      dialogFormVisible: false,
+      id: "",
+      form: {
+        name: ""
+      },
+      formLabelWidth: "120px"
+    };
+  },
   methods: {
     ...mapMutations(["preBtn", "nextBtn", "setSelect", "getValue"]),
     handleSizeChange(val) {
@@ -93,36 +114,44 @@ export default {
     handleCurrentChange(val) {
       this.setSelect(val);
     },
-    apply(id) {
-      //   console.log(id);
-      //   rows.splice(index, 1);
-      this.$router.push(`/info/applyHouse/${id}`);
+    rejectBtn(id) {
+      this.id = id;
+      this.dialogFormVisible = true;
     },
-    // alterRow(id) {
-    // //   this.$router.push(`/info/alterHouse/${id}`);
-    // },
     lookImg(img) {
       this.$router.push(`/info/lookImg/${img._id}`);
     },
     refuseBtn(info) {
-      this.$store.dispatch("shopHouse/refuse", {
-        info: {
-          shopName: "亲~等你来哟",
-          shopLicenceNum: "亲~等你来哟",
-          shopCorporate: "亲~等你来哟",
-          shopTel: "亲~等你来哟",
-          shopFeature: "亲~等你来哟",
-          shopImg: [],
-          type: 0
-        },
-        id: info._id,
-        type: 1
+      this.rows.some(item => {
+        if (item._id === this.id) {
+          this.$store.dispatch("shopHouse/sendContent", {
+            heId: item.usersId,
+            shopName: item.shopName,
+            content: this.form.name
+          });
+          this.$store.dispatch("shopHouse/refuse", {
+            info: {
+              shopName: "亲~等你来哟",
+              shopLicenceNum: "亲~等你来哟",
+              shopCorporate: "亲~等你来哟",
+              shopTel: "亲~等你来哟",
+              shopFeature: "亲~等你来哟",
+              shopImg: [],
+              type: 0,
+              userName: "木有人"
+            },
+            id: item._id,
+            type: 1
+          });
+          this.dialogFormVisible = false;
+        }
       });
     },
     agreeBtn(info) {
       this.$store.dispatch("shopHouse/refuse", {
         info: {
-          type: 2
+          type: 2,
+          usersId: info.usersId
         },
         id: info._id,
         type: 1
@@ -142,6 +171,9 @@ export default {
 
 <style>
 .cell {
+  text-align: center;
+}
+.el-form .el-form-item__label {
   text-align: center;
 }
 </style>

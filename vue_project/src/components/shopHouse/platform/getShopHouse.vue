@@ -5,6 +5,10 @@
             :data="rows"
             style="width: 100%;text-align:center">
             <el-table-column
+                prop="userName"
+                label="店长">
+            </el-table-column>
+            <el-table-column
                 prop="shopName"
                 label="门店名称">
             </el-table-column>
@@ -50,12 +54,34 @@
                         size="small">
                         移除
                     </el-button>
-                    <el-button
-                        @click.native.prevent="alterRow(scope.row._id)"
-                        type="text"
-                        size="small">
-                        修改
-                    </el-button>
+                    <el-button type="text" @click.native.prevent="openModify(scope.row._id)">修改</el-button>
+                    <el-dialog title="修改" :visible.sync="dialogFormVisible" >
+                        <el-form :model="form">
+                            <el-form-item label="商店名称：" :label-width="formLabelWidth">
+                                <el-input v-model="form.shopName" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="营业地址：" :label-width="formLabelWidth">
+                                <el-input v-model="form.shopAdd" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="更新图片：" :label-width="formLabelWidth">
+                                <el-upload
+                                    class="upload-demo"
+                                    action="/files/upload"
+                                    :on-remove="handleRemove"
+                                    list-type="picture"
+                                    :auto-upload="true"
+                                    :on-success="handleSuccess"
+                                    :file-list="fileList"
+                                    >
+                                    <el-button size="small" type="primary">点击上传</el-button>
+                                </el-upload>
+                            </el-form-item>
+                        </el-form>
+                        <div slot="footer" class="dialog-footer">
+                            <el-button @click="dialogFormVisible = false">取 消</el-button>
+                            <el-button type="primary" @click.native.prevent="agreeModify()">确 定</el-button>
+                        </div>
+                    </el-dialog>
                 </template>
             </el-table-column>
         </el-table>
@@ -85,8 +111,59 @@ export default {
   computed: {
     ...mapState(["count", "eachPage", "maxPage", "nowPage", "rows"])
   },
+  data() {
+    return {
+      id: "",
+      dialogFormVisible: false,
+      form: {
+        shopName: "",
+        shopAdd: "",
+        shopImg: []
+      },
+      formLabelWidth: "120px",
+      fileList: []
+    };
+  },
   methods: {
     ...mapMutations(["preBtn", "nextBtn", "setSelect", "getValue"]),
+    handleRemove(file) {
+      for (let i = 0; i < this.form.shopImg.length; i++) {
+        if (this.form.shopImg[i] === file.url) {
+          this.form.shopImg.splice(i, 1);
+          return;
+        }
+      }
+    },
+    handleSuccess(response) {
+      this.form.shopImg.push(response);
+    },
+    openModify(id) {
+      this.dialogFormVisible = true;
+      this.rows.some(item => {
+        if (item._id === id) {
+          this.id = id;
+          this.form.shopName = item.shopName;
+          this.form.shopAdd = item.shopAdd;
+          this.form.shopImg = item.shopImg;
+          this.fileList = item.shopImg.map(item => {
+            return { url: item };
+          });
+          return true;
+        }
+      });
+    },
+    agreeModify() {
+      this.$store.dispatch("shopHouse/alterHouse", {
+        info: {
+          shopName: this.form.shopName,
+          shopAdd: this.form.shopAdd,
+          shopImg: this.form.shopImg
+        },
+        id: this.id,
+        type: 0
+      });
+      this.dialogFormVisible = false;
+    },
     handleSizeChange(val) {
       this.getValue(val);
     },

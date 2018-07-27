@@ -50,7 +50,8 @@ export default {
       shopCorporate: "亲~等你来哟",
       shopTel: "亲~等你来哟",
       shopFeature: "亲~等你来哟",
-      shopImg: []
+      shopImg: [],
+      userName: "木有人"
     };
   },
   methods: {
@@ -66,19 +67,23 @@ export default {
       this.shopImg.push(response);
     },
     addBtn() {
-        this.$store.dispatch("shopHouse/addShopHouse", {
-          success: this.$router,
-          info: {
-            shopName: this.shopName,
-            shopLicenceNum: this.shopLicenceNum,
-            shopAdd: this.shopAdd,
-            shopCorporate: this.shopCorporate,
-            shopTel: this.shopTel,
-            shopFeature: this.shopFeature,
-            shopImg: this.shopImg,
-            type: 0
-          }
-        });
+      let localstroage = window.localStorage;
+      let usersId = localstroage.getItem("userId");
+      this.$store.dispatch("shopHouse/addShopHouse", {
+        success: this.$router,
+        info: {
+          shopName: this.shopName,
+          shopLicenceNum: this.shopLicenceNum,
+          shopAdd: this.shopAdd,
+          shopCorporate: this.shopCorporate,
+          shopTel: this.shopTel,
+          shopFeature: this.shopFeature,
+          shopImg: this.shopImg,
+          type: 0,
+          userName: this.userName,
+          usersId
+        }
+      });
     }
   }
 };
