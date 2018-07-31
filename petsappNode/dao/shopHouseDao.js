@@ -68,8 +68,6 @@ module.exports.del = async (id) => {
 module.exports.alterHouse = async ({ info, id }) => {
     // console.log(info)
     return await mongoose.model('shopHouse').update({ _id: id }, info)
-
-
 }
 //拒绝
 module.exports.refuse = async ({ info, id }) => {
@@ -80,9 +78,18 @@ module.exports.refuse = async ({ info, id }) => {
                 _id: info.usersId
             }, {
                 $push: {
-                    shopHouse: data._id
+                    shopHouse: id
                 }
             })
+    }
+    if (info.type == 0) {
+        let data = await mongoose.model('users').findOne({ _id: info.usersId })
+        for (let i = 0; i < data.shopHouse.length; i++) {
+            if (data.shopHouse[i] == id) {
+                data.shopHouse.splice(i, 1)
+            }
+        }
+        await mongoose.model('users').update({ _id: info.usersId }, data)
     }
     return data
 }

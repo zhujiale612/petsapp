@@ -1,6 +1,6 @@
 <template>
-<div>
-    <table style="text-align:right;">
+<el-card style="text-align:center;">
+    <table style="text-align:right;margin:0 auto;">
         <tr>
             <td><span>*</span>申请人：</td>
             <td>
@@ -26,6 +26,12 @@
             </td>
         </tr>
         <tr>
+            <td><span>*</span>定位：</td>
+            <td>
+                <el-input :disabled="true" v-model="position" ></el-input>
+            </td>
+        </tr>
+        <tr>
             <td><span>*</span>法人：</td>
             <td>
                 <el-input v-model="shopCorporate" ></el-input>
@@ -47,7 +53,7 @@
     <el-row>
         <el-button type="success" @click="addBtn">确认申请</el-button>
     </el-row>
-</div>
+</el-card>
 </template>
 
 <script>
@@ -63,6 +69,7 @@ export default {
     this.rows.some(item => {
       if (item._id === this.$route.params.houseId) {
         this.shopAdd = item.shopAdd;
+        this.position = item.position;
         this.shopName = item.shopName;
       }
     });

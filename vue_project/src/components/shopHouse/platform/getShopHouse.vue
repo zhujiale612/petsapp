@@ -21,6 +21,10 @@
                 label="营业地址">
             </el-table-column>
             <el-table-column
+                prop="position"
+                label="定位">
+            </el-table-column>
+            <el-table-column
                 prop="shopCorporate"
                 label="法人">
             </el-table-column>
@@ -62,6 +66,9 @@
                             </el-form-item>
                             <el-form-item label="营业地址：" :label-width="formLabelWidth">
                                 <el-input v-model="form.shopAdd" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="定位：" :label-width="formLabelWidth">
+                                <el-input v-model="form.position" auto-complete="off"></el-input>
                             </el-form-item>
                             <el-form-item label="更新图片：" :label-width="formLabelWidth">
                                 <el-upload
@@ -118,6 +125,7 @@ export default {
       form: {
         shopName: "",
         shopAdd: "",
+        position:"",
         shopImg: []
       },
       formLabelWidth: "120px",
@@ -144,6 +152,7 @@ export default {
           this.id = id;
           this.form.shopName = item.shopName;
           this.form.shopAdd = item.shopAdd;
+          this.form.position = item.position;
           this.form.shopImg = item.shopImg;
           this.fileList = item.shopImg.map(item => {
             return { url: item };
@@ -157,6 +166,7 @@ export default {
         info: {
           shopName: this.form.shopName,
           shopAdd: this.form.shopAdd,
+          position: this.form.position,
           shopImg: this.form.shopImg
         },
         id: this.id,

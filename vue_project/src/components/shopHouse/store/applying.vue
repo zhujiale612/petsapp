@@ -21,6 +21,10 @@
                 label="营业地址">
             </el-table-column>
             <el-table-column
+                prop="position"
+                label="定位">
+            </el-table-column>
+            <el-table-column
                 prop="shopCorporate"
                 label="法人">
             </el-table-column>
@@ -48,7 +52,7 @@
                 prop="_id"
                 label="状态">
                 <template slot-scope="scope">
-                    <el-button type="primary" :loading="true">审核中</el-button>
+                    <el-button style="padding:10px;" type="primary" :loading="true">审核中</el-button>
                 </template>
             </el-table-column>
         </el-table>
@@ -96,7 +100,7 @@ export default {
     // },
     lookImg(img) {
       this.$router.push(`/info/lookImg/${img._id}`);
-    },
+    }
   },
   watch: {
     nowPage() {

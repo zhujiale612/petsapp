@@ -21,6 +21,10 @@
                 label="营业地址">
             </el-table-column>
             <el-table-column
+                prop="position"
+                label="定位">
+            </el-table-column>
+            <el-table-column
                 prop="shopCorporate"
                 label="法人">
             </el-table-column>
@@ -67,6 +71,9 @@
                             </el-form-item>
                             <el-form-item label="营业地址：" :label-width="formLabelWidth">
                                 <el-input v-model="form.shopAdd" auto-complete="off"></el-input>
+                            </el-form-item>
+                            <el-form-item label="定位：" :label-width="formLabelWidth">
+                                <el-input v-model="form.position" auto-complete="off"></el-input>
                             </el-form-item>
                             <el-form-item label="法人：" :label-width="formLabelWidth">
                                 <el-input v-model="form.shopCorporate" auto-complete="off"></el-input>
@@ -135,6 +142,7 @@ export default {
         shopName: "",
         shopLicenceNum: "",
         shopAdd: "",
+        position: "",
         shopCorporate: "",
         shopFeature: "",
         shopTel: "",
@@ -176,7 +184,8 @@ export default {
           shopFeature: "亲~等你来哟",
           shopImg: [],
           type: 0,
-          userName: "木有人"
+          userName: "木有人",
+          usersId: info.usersId
         },
         id: info._id,
         type: 2
@@ -191,6 +200,7 @@ export default {
           this.form.shopName = item.shopName;
           this.form.shopLicenceNum = item.shopLicenceNum;
           this.form.shopAdd = item.shopAdd;
+          this.form.position = item.position;
           this.form.shopCorporate = item.shopCorporate;
           this.form.shopTel = item.shopTel;
           this.form.shopFeature = item.shopFeature;
@@ -208,6 +218,7 @@ export default {
           shopName: this.form.shopName,
           shopLicenceNum: this.form.shopLicenceNum,
           shopAdd: this.form.shopAdd,
+          position: this.form.position,
           shopCorporate: this.form.shopCorporate,
           shopTel: this.form.shopTel,
           shopFeature: this.form.shopFeature,

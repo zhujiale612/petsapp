@@ -1,6 +1,6 @@
 <template>
-<div>
-    <table style="text-align:right;">
+<el-card style="text-align:center;">
+    <table style="text-align:right;margin:0 auto;">
         <tr>
             <td><span>*</span>商店名称：</td>
             <td>
@@ -11,6 +11,12 @@
             <td><span>*</span>营业地址：</td>
             <td>
                 <el-input v-model="shopAdd" placeholder="请输入内容"></el-input>
+            </td>
+        </tr>
+        <tr>
+            <td><span>*</span>定位：</td>
+            <td>
+                <el-input v-model="position" placeholder="请输入内容"></el-input>
             </td>
         </tr>
         <tr>
@@ -33,7 +39,7 @@
     <el-row>
         <el-button type="success" @click="addBtn">确认添加</el-button>
     </el-row>
-</div>
+</el-card>
 </template>
 
 <script>
@@ -47,6 +53,7 @@ export default {
       shopName: "",
       shopLicenceNum: "亲~等你来哟",
       shopAdd: "",
+      position: "",
       shopCorporate: "亲~等你来哟",
       shopTel: "亲~等你来哟",
       shopFeature: "亲~等你来哟",
@@ -75,6 +82,7 @@ export default {
           shopName: this.shopName,
           shopLicenceNum: this.shopLicenceNum,
           shopAdd: this.shopAdd,
+          position: this.position,
           shopCorporate: this.shopCorporate,
           shopTel: this.shopTel,
           shopFeature: this.shopFeature,

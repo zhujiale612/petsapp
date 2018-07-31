@@ -21,6 +21,10 @@
                 label="营业地址">
             </el-table-column>
             <el-table-column
+                prop="position"
+                label="定位">
+            </el-table-column>
+            <el-table-column
                 prop="shopCorporate"
                 label="法人">
             </el-table-column>

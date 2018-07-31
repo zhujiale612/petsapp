@@ -10,10 +10,10 @@ var AddshopHouseSchema = new Schema({
     shopLicenceNum: {
         type: String
     },
-    // 营业执照图片
-    // shopLicenceImg: {
-    //     type: String
-    // },
+    //定位
+    position: {
+        type: String
+    },
     // 营业地址
     shopAdd: {
         type: String
