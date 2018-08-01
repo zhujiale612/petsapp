@@ -6,7 +6,10 @@ var logger = require('morgan');
 require('./dao/database.js')
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/user');
+//订单
 var orderRouter = require('./routes/order');
+//购物车
+var shopcarRouter = require('./routes/shopcar');
 //宠主
 var membersRouter = require('./routes/members');
 var memberurlRouter = require('./routes/memberurl');
@@ -33,7 +36,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/user', usersRouter);
+//订单
 app.use('/order', orderRouter);
+//购物车
+app.use('/shopcar', shopcarRouter);
 //宠主
 app.use('/membersRouter', membersRouter);
 app.use('/memberurl', memberurlRouter);

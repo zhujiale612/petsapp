@@ -4,6 +4,7 @@ var router = express.Router();
 const { saveGoods,getGoods,delGoods,modifyGoods,getGoodsDetail,getsearch,getGoodsTwo} = require("../service/goodService")
 
 router.post('/saveGoods', async function (req, res, next) {
+    console.log(req.body)
     res.send(await saveGoods(req.body))
 
 });

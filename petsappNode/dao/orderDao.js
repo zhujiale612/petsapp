@@ -21,8 +21,7 @@ module.exports.getorders = async (curPage, eachPage) => {
 }
 
 
-module.exports.addorders = async (orders) => {
-      let data=JSON.parse(orders)
+module.exports.addorders = async (data) => {
       return await mongoose.model("order").create(data)
 }
 
@@ -32,9 +31,9 @@ module.exports.delorders = async (_id) => {
      return true
 }
 
-module.exports.setorders = async ({_id,orderState}) => {
- console.log(id,orderState)
-    // await mongoose.model("order").update({_id:_id.id},orderState)
-    // return true
+module.exports.setorders = async ({_id}) => {
+ console.log(_id)
+    await mongoose.model("order").update({_id},{orderState:"已支付"})
+    return true
 }
 

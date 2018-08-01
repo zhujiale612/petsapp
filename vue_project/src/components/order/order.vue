@@ -192,6 +192,11 @@ export default {
          this.$store.dispatch("async_getorder")
       }
     },
+    add(){
+      console.log("a")
+      this.$store.dispatch("async_addorder")
+      
+    },
       filterShop(value, row, column){
         const property = column['property'];
         return row[property] === value;

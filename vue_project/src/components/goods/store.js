@@ -115,7 +115,7 @@ export default ({
           "Content-Type": "application/json"
         }
       }).then(res => res.json());
-      console.log(data)
+      // console.log(data)
       if (data) {
         commit('getGoods', data)
       } else {

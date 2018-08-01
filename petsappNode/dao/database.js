@@ -6,7 +6,8 @@ require("./model/service")
 require("./model/goods")
 require("./model/shopHouse")
 require("./model/speakSth")
+require("./model/shopcar")
 mongoose.connect('mongodb://localhost:27017/f48',{useNewUrlParser:true});
 mongoose.connection.on('connected', function () {
-  console.log('Mongoose connected to ');
+  console.log('Mongoose connected to 成功');
 });

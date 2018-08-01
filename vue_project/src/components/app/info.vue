@@ -1,12 +1,12 @@
 <template>
 <el-container style="height: 800px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
-        <el-menu :default-openeds="['1', '3']" router>
-            <el-submenu index="0" v-if="userType===0" >
-                <template slot="title"><i class="el-icon-menu"></i>平台管理员权限</template>
+        <el-menu :default-openeds="['1','2','3','4','5','6','7','8','9']" router>
+            <el-submenu index="8" v-if="userType===0" >
+                <template slot="title" ><i class="el-icon-menu"></i>平台管理员权限</template>
                 <el-menu-item-group>
                     <el-menu-item index="/storeUsers">用户管理</el-menu-item>
-                     <el-submenu index="">
+                     <el-submenu index="7">
                         <template slot="title">门店管理</template>
                         <el-menu-item index="/info/addShopHouse">添加门店</el-menu-item>
                         <el-menu-item index="/info/getShophouse">未使用门店</el-menu-item>
@@ -14,7 +14,7 @@
                         <el-menu-item index="/info/successApply">已审核门店</el-menu-item>
                     </el-submenu>
                     <el-menu-item index="">供应商管理</el-menu-item>
-                    <el-submenu index="">
+                    <el-submenu index="9">
                         <template slot="title">宠主管理</template>
                         <el-menu-item index="/addmember">欢迎新主人</el-menu-item>
                         <el-menu-item index="/getmember">铲屎君列表</el-menu-item>
@@ -24,19 +24,19 @@
             <el-submenu index="1" v-else >
                 <template slot="title"><i class="el-icon-message"></i>门店管理员权限</template>
                 <el-menu-item-group>
-                    <el-submenu index="">
+                    <el-submenu index="4">
                         <template slot="title">商品管理</template>
                         <el-menu-item index="/addgoods">新增商品</el-menu-item>
                         <el-menu-item index="/goodslist">商品列表</el-menu-item>
                     </el-submenu>
-                    <el-submenu index="">
+                    <el-submenu index="5">
                         <template slot="title">服务管理</template>
                         <el-menu-item index="/addservice">添加服务</el-menu-item>
                         <el-menu-item index="/getservice">服务列表</el-menu-item>
                     </el-submenu>
                     <el-menu-item index="/order">订单管理</el-menu-item>
                     <el-menu-item index="/pet">宠物管理</el-menu-item>
-                    <el-submenu index="">
+                    <el-submenu index="6">
                         <template slot="title">门店管理</template>
                         <el-menu-item index="/info/existHouse">申请门店</el-menu-item>
                         <el-menu-item index="/info/applying">审核中</el-menu-item>

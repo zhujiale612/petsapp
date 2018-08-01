@@ -5,7 +5,28 @@ export default {
     eachPage:3,
     maxPage: 0,
     count: 0,
-    tableData5:[]
+    tableData5:[
+      {
+              id: '12987122',
+              memberName: '好滋好味鸡蛋仔',
+              goodsName: '江浙小吃、小吃零食',
+              serviceName: '荷兰优质淡奶',
+              memberAdd: '上海市普陀区真北路',
+              shopName: '王小虎夫妻店',
+              shopId: '10333',
+              orderState:"未支付"
+              
+            }, {
+              id: '12987123',
+              memberName: '好滋好味鸡蛋仔',
+              goodsName: '江浙小吃、小吃零食',
+              serviceName: '荷兰优质淡奶',
+              memberAdd: '上海市普陀区真北路',
+              shopName: '王小虎夫妻店',
+              shopId: '10334',
+              orderState:"已支付"
+            },
+    ]
   },
   mutations: {
     deleteRow() {
@@ -36,14 +57,14 @@ export default {
       commit("getorders1",data)
     },
     //添加
-    async async_addorder() {
+    async async_addorder(state) {
       const data = await fetch('/order/addorders',{
         method: "post",
         headers: {
           "Content-Type": "application/json"
         },
         body:JSON.stringify(
-          {a:123}
+         state.state.tableData5
         ),
       }).then(res => res.json())
       return data

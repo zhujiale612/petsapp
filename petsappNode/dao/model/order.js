@@ -11,25 +11,25 @@ var OrderSchema = new Schema({
     shopName: {
         type: String
     },
-    //用户名
-    memberName: {
-        type: String
+    members:{
+        type:Object
     },
-    //用户地址
-    memberAdd: {
-        type: String
+    
+    totalPrice:{
+        type: Number
     },
-    //订单描述
-    goodsName:{
-        type: String
+    goodList:{
+        type:Array
     },
-    serviceName:{
-        type: String
+    totalCount:{
+        type: Number
     },
     //订单状态
-    orderState: {
+    orderState:{
         type: String
     }
+       
+ 
 });
 
 mongoose.model("order", OrderSchema, "order");

@@ -17,7 +17,7 @@ module.exports.saveGoods = async (obj) => {
 module.exports.getGoods = async (curPage, eachPage) => {
 
     const goodsmodel = mongoose.model("goods")
-    const count = await goodsmodel.countDocuments()
+    const count = await goodsmodel.count()
 
     const rows = await goodsmodel
         .find()

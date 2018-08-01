@@ -13,8 +13,9 @@ router.get('/getorders', async function (req, res, next) {
     res.send(await getorders(curPage, eachPage))
 });
 
-router.post('/addorders', function (req,res,next){
+router.post('/addorders',async function (req,res,next){
     console.log(req.body);
+    res.send(await addorders(req.body))
 })
 
 
@@ -22,8 +23,8 @@ router.get('/delorders', async function (req, res, next) {
     res.send(await delorders(req.query))
 });
 
-router.get('/setorders', async function (req, res, next) {
-    res.send(await setorders(req.query))
+router.post('/setorders', async function (req, res, next) {
+    res.send(await setorders(req.body))
 });
 
 
